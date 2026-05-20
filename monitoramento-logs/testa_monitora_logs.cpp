@@ -107,3 +107,16 @@ TEST_CASE("Linhas invalidas sao ignoradas e validas processadas", "[monitora_log
   REQUIRE(std::getline(total, linha));
   REQUIRE(linha == "20/1/2026 17:45:38 Outro exemplo de log");
 }
+
+TEST_CASE("Regex parse sucesso cria total_", "[monitora_logs]") {
+  std::remove("./fixtures/total_log_parse_ok.txt");
+
+  REQUIRE(processa_lista_logs("./fixtures/lista_parse_ok.txt"));
+
+  std::ifstream total("./fixtures/total_log_parse_ok.txt");
+  REQUIRE(total.is_open());
+
+  std::string linha;
+  REQUIRE(std::getline(total, linha));
+  REQUIRE(linha == "1/2/2026 03:04:05 Log parse ok");
+}
