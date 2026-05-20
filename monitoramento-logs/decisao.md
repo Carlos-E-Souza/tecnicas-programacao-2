@@ -52,3 +52,47 @@ Observacoes
 - D6: Log vazio + total existe mantem total_.
 - D7: Total vazio + log existe copia log para total_.
 - D8: Linhas invalidas sao ignoradas e validas sao processadas.
+
+## Expressoes regulares de cobertura (caixa-aberta)
+
+As expressoes abaixo descrevem caminhos internos do codigo. Cada expressao vira
+um teste. Elas se alinham com as colunas da tabela de decisao quando aplicavel.
+
+Legenda
+- E: entrada valida.
+- !E: entrada invalida.
+- L: lista aberta com sucesso.
+- !L: lista nao existe.
+- V: linha vazia na lista.
+- F: log existe.
+- !F: log ausente.
+- T: total_ existe.
+- !T: total_ ausente.
+- ZL: log vazio.
+- ZT: total_ vazio.
+- OK: linha de log valida.
+- BAD: linha de log invalida.
+
+R1: !L -> A1
+- Teste: lista inexistente retorna falso (D1).
+
+R2: L -> V -> A2 -> continua
+- Teste: linha vazia e ignorada (D2).
+
+R3: L -> !V -> !F -> A3 -> continua
+- Teste: log ausente e ignorado (D3).
+
+R4: L -> !V -> F -> !T -> !ZL -> A4
+- Teste: cria total_ e copia log (D4).
+
+R5: L -> !V -> F -> T -> !ZL -> !ZT -> OK* -> A5
+- Teste: merge ordenado com total_ existente (D5).
+
+R6: L -> !V -> F -> T -> ZL -> A6
+- Teste: log vazio mantem total_ (D6).
+
+R7: L -> !V -> F -> T -> !ZL -> ZT -> A4
+- Teste: total_ vazio copia log (D7).
+
+R8: L -> !V -> F -> (OK* + BAD+) -> A7 + A5
+- Teste: linhas invalidas sao ignoradas, validas entram no merge (D8).
