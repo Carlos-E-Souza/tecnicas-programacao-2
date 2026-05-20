@@ -1,15 +1,16 @@
-// Copyright 2026
+// Copyright 2026 Carlos
 
-#define CATCH_CONFIG_MAIN
-#include "./catch.hpp"  // NOLINT(build/include_subdir)
-#include "./monitora_logs.hpp"  // NOLINT(build/include_subdir)
+#include <sys/stat.h>
+#include <sys/types.h>
 
 #include <cerrno>
 #include <cstdio>
 #include <fstream>
 #include <string>
-#include <sys/stat.h>
-#include <sys/types.h>
+
+#define CATCH_CONFIG_MAIN
+#include "catch.hpp"  // NOLINT(build/include_subdir)
+#include "monitora_logs.hpp"  // NOLINT(build/include_subdir)
 
 bool garante_diretorio_output() {
   if (mkdir("output", 0755) == 0) {
@@ -119,7 +120,9 @@ TEST_CASE("Total vazio com log existente copia log", "[monitora_logs]") {
   REQUIRE(linha == "20/1/2026 17:45:38 Outro exemplo de log");
 }
 
-TEST_CASE("Linhas invalidas sao ignoradas e validas processadas", "[monitora_logs]") {
+TEST_CASE(
+  "Linhas invalidas sao ignoradas e validas processadas",
+  "[monitora_logs]") {
   // D8 / R8: L -> !V -> F -> (OK* + BAD+) -> A7 + A5
   // Linhas invalidas sao descartadas; validas entram no total_.
   REQUIRE(garante_diretorio_output());
@@ -210,7 +213,9 @@ TEST_CASE("Merge ordenado onde log vence", "[monitora_logs]") {
   REQUIRE(linha == "15/1/2026 12:00:00 Linha do total");
 }
 
-TEST_CASE("Merge ordenado com empate preserva total primeiro", "[monitora_logs]") {
+TEST_CASE(
+  "Merge ordenado com empate preserva total primeiro",
+  "[monitora_logs]") {
   // R13: L -> !V -> F -> T -> !ZL -> !ZT -> empate (total primeiro)
   // Empate de timestamp; total_ vem antes do log.
   REQUIRE(garante_diretorio_output());

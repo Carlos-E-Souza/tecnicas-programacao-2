@@ -1,5 +1,9 @@
-// Copyright 2026
-#include "./monitora_logs.hpp"  // NOLINT(build/include_subdir)
+// Copyright 2026 Carlos
+
+#include "monitora_logs.hpp"  // NOLINT(build/include_subdir)
+
+#include <sys/stat.h>
+#include <sys/types.h>
 
 #include <algorithm>
 #include <cassert>
@@ -9,8 +13,6 @@
 #include <sstream>
 #include <string>
 #include <vector>
-#include <sys/stat.h>
-#include <sys/types.h>
 
 namespace {
 
@@ -129,7 +131,9 @@ bool vem_antes(LogEntry const& esquerda, LogEntry const& direita) {
   if (esquerda.mes != direita.mes) return esquerda.mes < direita.mes;
   if (esquerda.dia != direita.dia) return esquerda.dia < direita.dia;
   if (esquerda.hora != direita.hora) return esquerda.hora < direita.hora;
-  if (esquerda.minuto != direita.minuto) return esquerda.minuto < direita.minuto;
+  if (esquerda.minuto != direita.minuto) {
+    return esquerda.minuto < direita.minuto;
+  }
   return esquerda.segundo < direita.segundo;
 }
 
@@ -219,7 +223,8 @@ bool processa_log(std::string const& caminho_log) {
     return true;
   }
 
-  std::vector<LogEntry> mesclado = mescla_entradas(entradas_total, entradas_log);
+  std::vector<LogEntry> mesclado =
+      mescla_entradas(entradas_total, entradas_log);
   std::ofstream total_escrita(caminho_total.c_str());
   escreve_entradas(mesclado, &total_escrita);
   return true;
