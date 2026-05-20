@@ -93,6 +93,18 @@ bool copia_arquivo(std::ifstream* origem, std::ofstream* destino) {
   return escreveu;
 }
 
+void escreve_entradas(std::vector<LogEntry> const& entradas,
+                      std::ofstream* destino) {
+  assert(destino != nullptr);
+
+  for (std::size_t k = 0; k < entradas.size(); k++) {
+    *destino << entradas[k].linha;
+    if (k + 1 < entradas.size()) {
+      *destino << "\n";
+    }
+  }
+}
+
 }  // namespace
 
 bool processa_lista_logs(char const * caminho_lista) {
@@ -116,8 +128,9 @@ bool processa_lista_logs(char const * caminho_lista) {
     std::string caminho_total = monta_caminho_total(caminho_log);
     std::ifstream total_leitura(caminho_total.c_str());
     if (!total_leitura.is_open()) {
+      std::vector<LogEntry> entradas_log = carrega_entradas(&log);
       std::ofstream total_escrita(caminho_total.c_str());
-      copia_arquivo(&log, &total_escrita);
+      escreve_entradas(entradas_log, &total_escrita);
       continue;
     }
 
@@ -130,12 +143,7 @@ bool processa_lista_logs(char const * caminho_lista) {
 
     if (entradas_total.empty()) {
       std::ofstream total_escrita(caminho_total.c_str());
-      for (std::size_t k = 0; k < entradas_log.size(); k++) {
-        total_escrita << entradas_log[k].linha;
-        if (k + 1 < entradas_log.size()) {
-          total_escrita << "\n";
-        }
-      }
+      escreve_entradas(entradas_log, &total_escrita);
       continue;
     }
 
@@ -163,12 +171,7 @@ bool processa_lista_logs(char const * caminho_lista) {
     }
 
     std::ofstream total_escrita(caminho_total.c_str());
-    for (std::size_t k = 0; k < mesclado.size(); k++) {
-      total_escrita << mesclado[k].linha;
-      if (k + 1 < mesclado.size()) {
-        total_escrita << "\n";
-      }
-    }
+    escreve_entradas(mesclado, &total_escrita);
   }
 
   return true;

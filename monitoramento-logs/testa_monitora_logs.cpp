@@ -92,3 +92,18 @@ TEST_CASE("Total vazio com log existente copia log", "[monitora_logs]") {
   REQUIRE(std::getline(total, linha));
   REQUIRE(linha == "20/1/2026 17:45:38 Outro exemplo de log");
 }
+
+TEST_CASE("Linhas invalidas sao ignoradas e validas processadas", "[monitora_logs]") {
+  std::remove("./fixtures/total_log_misto.txt");
+
+  REQUIRE(processa_lista_logs("./fixtures/lista_com_log_misto.txt"));
+
+  std::ifstream total("./fixtures/total_log_misto.txt");
+  REQUIRE(total.is_open());
+
+  std::string linha;
+  REQUIRE(std::getline(total, linha));
+  REQUIRE(linha == "16/1/2026 13:27:46 Este e um exemplo de log");
+  REQUIRE(std::getline(total, linha));
+  REQUIRE(linha == "20/1/2026 17:45:38 Outro exemplo de log");
+}
