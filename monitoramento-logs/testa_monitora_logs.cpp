@@ -233,3 +233,25 @@ TEST_CASE("Caminho com barras invertidas e normalizado", "[monitora_logs]") {
   REQUIRE(std::getline(total, linha));
   REQUIRE(linha == "12/1/2026 12:12:12 Log com barra invertida");
 }
+
+TEST_CASE("Fim a fim com multiplos logs ordenados", "[monitora_logs]") {
+  std::remove("./total_log_e2e_a.txt");
+  std::remove("./total_log_e2e_b.txt");
+
+  REQUIRE(processa_lista_logs("./fixtures/lista_e2e.txt"));
+
+  std::ifstream total_a("./total_log_e2e_a.txt");
+  REQUIRE(total_a.is_open());
+  std::string linha;
+  REQUIRE(std::getline(total_a, linha));
+  REQUIRE(linha == "05/1/2026 09:00:00 Log E2E A");
+  REQUIRE(std::getline(total_a, linha));
+  REQUIRE(linha == "15/1/2026 10:00:00 Log E2E A2");
+
+  std::ifstream total_b("./total_log_e2e_b.txt");
+  REQUIRE(total_b.is_open());
+  REQUIRE(std::getline(total_b, linha));
+  REQUIRE(linha == "10/1/2026 11:00:00 Log E2E B");
+  REQUIRE(std::getline(total_b, linha));
+  REQUIRE(linha == "20/1/2026 12:00:00 Log E2E B2");
+}
