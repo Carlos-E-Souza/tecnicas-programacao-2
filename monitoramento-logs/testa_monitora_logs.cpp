@@ -149,3 +149,22 @@ TEST_CASE("Merge ordenado onde total vence", "[monitora_logs]") {
   REQUIRE(std::getline(total, linha));
   REQUIRE(linha == "16/1/2026 13:27:46 Log do arquivo");
 }
+
+TEST_CASE("Merge ordenado onde log vence", "[monitora_logs]") {
+  std::remove("./fixtures/total_log_log_wins.txt");
+  std::ofstream total_base("./fixtures/total_log_log_wins.txt");
+  REQUIRE(total_base.is_open());
+  total_base << "15/1/2026 12:00:00 Linha do total";
+  total_base.close();
+
+  REQUIRE(processa_lista_logs("./fixtures/lista_log_wins.txt"));
+
+  std::ifstream total("./fixtures/total_log_log_wins.txt");
+  REQUIRE(total.is_open());
+
+  std::string linha;
+  REQUIRE(std::getline(total, linha));
+  REQUIRE(linha == "14/1/2026 10:00:00 Linha do log");
+  REQUIRE(std::getline(total, linha));
+  REQUIRE(linha == "15/1/2026 12:00:00 Linha do total");
+}
