@@ -1,0 +1,174 @@
+\doxysection{testa\+\_\+monitora\+\_\+logs.\+cpp File Reference}
+\hypertarget{testa__monitora__logs_8cpp}{}\label{testa__monitora__logs_8cpp}\index{testa\_monitora\_logs.cpp@{testa\_monitora\_logs.cpp}}
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$cerrno$>$}\newline
+{\ttfamily \#include $<$cstdio$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include "{}catch.\+hpp"{}}\newline
+{\ttfamily \#include "{}monitora\+\_\+logs.\+hpp"{}}\newline
+Include dependency graph for testa\+\_\+monitora\+\_\+logs.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{testa__monitora__logs_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{testa__monitora__logs_8cpp_a656eb5868e824d59f489f910db438420}{CATCH\+\_\+\+CONFIG\+\_\+\+MAIN}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{testa__monitora__logs_8cpp_a724a21951c03b2412c0cc0b26236c007}{garante\+\_\+diretorio\+\_\+output}} ()
+\item 
+\mbox{\hyperlink{testa__monitora__logs_8cpp_a162cf803b9e714128f178d4d8eff9830}{TEST\+\_\+\+CASE}} ("{}Lista inexistente retorna falso"{}, "{}\mbox{[}monitora\+\_\+logs\mbox{]}"{})
+\item 
+\mbox{\hyperlink{testa__monitora__logs_8cpp_aa920ef9f9f1ce06ed250750d1297170f}{TEST\+\_\+\+CASE}} ("{}Lista existe e log ausente retorna verdadeiro"{}, "{}\mbox{[}monitora\+\_\+logs\mbox{]}"{})
+\item 
+\mbox{\hyperlink{testa__monitora__logs_8cpp_ac7e05848fb0f4fa09eddb623fddac1fe}{TEST\+\_\+\+CASE}} ("{}Lista existe e total ausente cria total\+\_\+"{}, "{}\mbox{[}monitora\+\_\+logs\mbox{]}"{})
+\item 
+\mbox{\hyperlink{testa__monitora__logs_8cpp_afbe40e20807a1f83e0b70d1d4964012b}{TEST\+\_\+\+CASE}} ("{}Lista existe e total existe faz merge ordenado"{}, "{}\mbox{[}monitora\+\_\+logs\mbox{]}"{})
+\item 
+\mbox{\hyperlink{testa__monitora__logs_8cpp_a6630a333c7c3f342ade35c8e1acbb4ed}{TEST\+\_\+\+CASE}} ("{}Log vazio com total existente mantem total\+\_\+"{}, "{}\mbox{[}monitora\+\_\+logs\mbox{]}"{})
+\item 
+\mbox{\hyperlink{testa__monitora__logs_8cpp_a93941e048280bd870ca2ce0b0bc362c4}{TEST\+\_\+\+CASE}} ("{}Total vazio com log existente copia log"{}, "{}\mbox{[}monitora\+\_\+logs\mbox{]}"{})
+\item 
+\mbox{\hyperlink{testa__monitora__logs_8cpp_a3dfc3be2b1d51f5427d148261a668237}{TEST\+\_\+\+CASE}} ("{}Linhas invalidas sao ignoradas e validas processadas"{}, "{}\mbox{[}monitora\+\_\+logs\mbox{]}"{})
+\item 
+\mbox{\hyperlink{testa__monitora__logs_8cpp_ab308086373ac265261a449329d3a8f35}{TEST\+\_\+\+CASE}} ("{}Regex parse sucesso cria total\+\_\+"{}, "{}\mbox{[}monitora\+\_\+logs\mbox{]}"{})
+\item 
+\mbox{\hyperlink{testa__monitora__logs_8cpp_a0bc68e11eb7fa6cb98a6a72dc0d402c1}{TEST\+\_\+\+CASE}} ("{}Regex parse falha gera total\+\_\+ vazio"{}, "{}\mbox{[}monitora\+\_\+logs\mbox{]}"{})
+\item 
+\mbox{\hyperlink{testa__monitora__logs_8cpp_a1e4ed5a33f2dcc43e8b7a8c5029309aa}{TEST\+\_\+\+CASE}} ("{}Merge ordenado onde total vence"{}, "{}\mbox{[}monitora\+\_\+logs\mbox{]}"{})
+\item 
+\mbox{\hyperlink{testa__monitora__logs_8cpp_a24669c1ed6ac94128990ffbbcc6f695a}{TEST\+\_\+\+CASE}} ("{}Merge ordenado onde log vence"{}, "{}\mbox{[}monitora\+\_\+logs\mbox{]}"{})
+\item 
+\mbox{\hyperlink{testa__monitora__logs_8cpp_abdc76e7c6e990c0d985ae8dca9bbf634}{TEST\+\_\+\+CASE}} ("{}Merge ordenado com empate preserva total primeiro"{}, "{}\mbox{[}monitora\+\_\+logs\mbox{]}"{})
+\item 
+\mbox{\hyperlink{testa__monitora__logs_8cpp_ae78c43f4e0af5d04c3d83415ca3ed028}{TEST\+\_\+\+CASE}} ("{}Logs com mesmo basename agregam em um total\+\_\+"{}, "{}\mbox{[}monitora\+\_\+logs\mbox{]}"{})
+\item 
+\mbox{\hyperlink{testa__monitora__logs_8cpp_a347fd20485f01b9c00d4520622bcef7d}{TEST\+\_\+\+CASE}} ("{}Lista com multiplos arquivos processa em ordem"{}, "{}\mbox{[}monitora\+\_\+logs\mbox{]}"{})
+\item 
+\mbox{\hyperlink{testa__monitora__logs_8cpp_add8065da71f53ead3781d0857bab4b1d}{TEST\+\_\+\+CASE}} ("{}Caminho com barras invertidas e normalizado"{}, "{}\mbox{[}monitora\+\_\+logs\mbox{]}"{})
+\item 
+\mbox{\hyperlink{testa__monitora__logs_8cpp_a2567b922088ab5f29a81baece8722887}{TEST\+\_\+\+CASE}} ("{}Fim a fim com multiplos logs ordenados"{}, "{}\mbox{[}monitora\+\_\+logs\mbox{]}"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{testa__monitora__logs_8cpp_a656eb5868e824d59f489f910db438420}\label{testa__monitora__logs_8cpp_a656eb5868e824d59f489f910db438420} 
+\index{testa\_monitora\_logs.cpp@{testa\_monitora\_logs.cpp}!CATCH\_CONFIG\_MAIN@{CATCH\_CONFIG\_MAIN}}
+\index{CATCH\_CONFIG\_MAIN@{CATCH\_CONFIG\_MAIN}!testa\_monitora\_logs.cpp@{testa\_monitora\_logs.cpp}}
+\doxysubsubsection{\texorpdfstring{CATCH\_CONFIG\_MAIN}{CATCH\_CONFIG\_MAIN}}
+{\footnotesize\ttfamily \#define CATCH\+\_\+\+CONFIG\+\_\+\+MAIN}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{testa__monitora__logs_8cpp_a724a21951c03b2412c0cc0b26236c007}\label{testa__monitora__logs_8cpp_a724a21951c03b2412c0cc0b26236c007} 
+\index{testa\_monitora\_logs.cpp@{testa\_monitora\_logs.cpp}!garante\_diretorio\_output@{garante\_diretorio\_output}}
+\index{garante\_diretorio\_output@{garante\_diretorio\_output}!testa\_monitora\_logs.cpp@{testa\_monitora\_logs.cpp}}
+\doxysubsubsection{\texorpdfstring{garante\_diretorio\_output()}{garante\_diretorio\_output()}}
+{\footnotesize\ttfamily bool garante\+\_\+diretorio\+\_\+output (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{testa__monitora__logs_8cpp_add8065da71f53ead3781d0857bab4b1d}\label{testa__monitora__logs_8cpp_add8065da71f53ead3781d0857bab4b1d} 
+\index{testa\_monitora\_logs.cpp@{testa\_monitora\_logs.cpp}!TEST\_CASE@{TEST\_CASE}}
+\index{TEST\_CASE@{TEST\_CASE}!testa\_monitora\_logs.cpp@{testa\_monitora\_logs.cpp}}
+\doxysubsubsection{\texorpdfstring{TEST\_CASE()}{TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [1/16]}}
+{\footnotesize\ttfamily TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{"{}Caminho com barras invertidas e normalizado"{}}]{,  }\item[{"{}"{}}]{\mbox{[}monitora\+\_\+logs\mbox{]} }\end{DoxyParamCaption})}
+
+\Hypertarget{testa__monitora__logs_8cpp_a2567b922088ab5f29a81baece8722887}\label{testa__monitora__logs_8cpp_a2567b922088ab5f29a81baece8722887} 
+\index{testa\_monitora\_logs.cpp@{testa\_monitora\_logs.cpp}!TEST\_CASE@{TEST\_CASE}}
+\index{TEST\_CASE@{TEST\_CASE}!testa\_monitora\_logs.cpp@{testa\_monitora\_logs.cpp}}
+\doxysubsubsection{\texorpdfstring{TEST\_CASE()}{TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [2/16]}}
+{\footnotesize\ttfamily TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{"{}Fim a fim com multiplos logs ordenados"{}}]{,  }\item[{"{}"{}}]{\mbox{[}monitora\+\_\+logs\mbox{]} }\end{DoxyParamCaption})}
+
+\Hypertarget{testa__monitora__logs_8cpp_a3dfc3be2b1d51f5427d148261a668237}\label{testa__monitora__logs_8cpp_a3dfc3be2b1d51f5427d148261a668237} 
+\index{testa\_monitora\_logs.cpp@{testa\_monitora\_logs.cpp}!TEST\_CASE@{TEST\_CASE}}
+\index{TEST\_CASE@{TEST\_CASE}!testa\_monitora\_logs.cpp@{testa\_monitora\_logs.cpp}}
+\doxysubsubsection{\texorpdfstring{TEST\_CASE()}{TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [3/16]}}
+{\footnotesize\ttfamily TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{"{}Linhas invalidas sao ignoradas e validas processadas"{}}]{,  }\item[{"{}"{}}]{\mbox{[}monitora\+\_\+logs\mbox{]} }\end{DoxyParamCaption})}
+
+\Hypertarget{testa__monitora__logs_8cpp_a347fd20485f01b9c00d4520622bcef7d}\label{testa__monitora__logs_8cpp_a347fd20485f01b9c00d4520622bcef7d} 
+\index{testa\_monitora\_logs.cpp@{testa\_monitora\_logs.cpp}!TEST\_CASE@{TEST\_CASE}}
+\index{TEST\_CASE@{TEST\_CASE}!testa\_monitora\_logs.cpp@{testa\_monitora\_logs.cpp}}
+\doxysubsubsection{\texorpdfstring{TEST\_CASE()}{TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [4/16]}}
+{\footnotesize\ttfamily TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{"{}Lista com multiplos arquivos processa em ordem"{}}]{,  }\item[{"{}"{}}]{\mbox{[}monitora\+\_\+logs\mbox{]} }\end{DoxyParamCaption})}
+
+\Hypertarget{testa__monitora__logs_8cpp_aa920ef9f9f1ce06ed250750d1297170f}\label{testa__monitora__logs_8cpp_aa920ef9f9f1ce06ed250750d1297170f} 
+\index{testa\_monitora\_logs.cpp@{testa\_monitora\_logs.cpp}!TEST\_CASE@{TEST\_CASE}}
+\index{TEST\_CASE@{TEST\_CASE}!testa\_monitora\_logs.cpp@{testa\_monitora\_logs.cpp}}
+\doxysubsubsection{\texorpdfstring{TEST\_CASE()}{TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [5/16]}}
+{\footnotesize\ttfamily TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{"{}Lista existe e log ausente retorna verdadeiro"{}}]{,  }\item[{"{}"{}}]{\mbox{[}monitora\+\_\+logs\mbox{]} }\end{DoxyParamCaption})}
+
+\Hypertarget{testa__monitora__logs_8cpp_ac7e05848fb0f4fa09eddb623fddac1fe}\label{testa__monitora__logs_8cpp_ac7e05848fb0f4fa09eddb623fddac1fe} 
+\index{testa\_monitora\_logs.cpp@{testa\_monitora\_logs.cpp}!TEST\_CASE@{TEST\_CASE}}
+\index{TEST\_CASE@{TEST\_CASE}!testa\_monitora\_logs.cpp@{testa\_monitora\_logs.cpp}}
+\doxysubsubsection{\texorpdfstring{TEST\_CASE()}{TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [6/16]}}
+{\footnotesize\ttfamily TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{"{}Lista existe e total ausente cria total\+\_\+"{}}]{,  }\item[{"{}"{}}]{\mbox{[}monitora\+\_\+logs\mbox{]} }\end{DoxyParamCaption})}
+
+\Hypertarget{testa__monitora__logs_8cpp_afbe40e20807a1f83e0b70d1d4964012b}\label{testa__monitora__logs_8cpp_afbe40e20807a1f83e0b70d1d4964012b} 
+\index{testa\_monitora\_logs.cpp@{testa\_monitora\_logs.cpp}!TEST\_CASE@{TEST\_CASE}}
+\index{TEST\_CASE@{TEST\_CASE}!testa\_monitora\_logs.cpp@{testa\_monitora\_logs.cpp}}
+\doxysubsubsection{\texorpdfstring{TEST\_CASE()}{TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [7/16]}}
+{\footnotesize\ttfamily TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{"{}Lista existe e total existe faz merge ordenado"{}}]{,  }\item[{"{}"{}}]{\mbox{[}monitora\+\_\+logs\mbox{]} }\end{DoxyParamCaption})}
+
+\Hypertarget{testa__monitora__logs_8cpp_a162cf803b9e714128f178d4d8eff9830}\label{testa__monitora__logs_8cpp_a162cf803b9e714128f178d4d8eff9830} 
+\index{testa\_monitora\_logs.cpp@{testa\_monitora\_logs.cpp}!TEST\_CASE@{TEST\_CASE}}
+\index{TEST\_CASE@{TEST\_CASE}!testa\_monitora\_logs.cpp@{testa\_monitora\_logs.cpp}}
+\doxysubsubsection{\texorpdfstring{TEST\_CASE()}{TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [8/16]}}
+{\footnotesize\ttfamily TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{"{}Lista inexistente retorna falso"{}}]{,  }\item[{"{}"{}}]{\mbox{[}monitora\+\_\+logs\mbox{]} }\end{DoxyParamCaption})}
+
+\Hypertarget{testa__monitora__logs_8cpp_a6630a333c7c3f342ade35c8e1acbb4ed}\label{testa__monitora__logs_8cpp_a6630a333c7c3f342ade35c8e1acbb4ed} 
+\index{testa\_monitora\_logs.cpp@{testa\_monitora\_logs.cpp}!TEST\_CASE@{TEST\_CASE}}
+\index{TEST\_CASE@{TEST\_CASE}!testa\_monitora\_logs.cpp@{testa\_monitora\_logs.cpp}}
+\doxysubsubsection{\texorpdfstring{TEST\_CASE()}{TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [9/16]}}
+{\footnotesize\ttfamily TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{"{}Log vazio com total existente mantem total\+\_\+"{}}]{,  }\item[{"{}"{}}]{\mbox{[}monitora\+\_\+logs\mbox{]} }\end{DoxyParamCaption})}
+
+\Hypertarget{testa__monitora__logs_8cpp_ae78c43f4e0af5d04c3d83415ca3ed028}\label{testa__monitora__logs_8cpp_ae78c43f4e0af5d04c3d83415ca3ed028} 
+\index{testa\_monitora\_logs.cpp@{testa\_monitora\_logs.cpp}!TEST\_CASE@{TEST\_CASE}}
+\index{TEST\_CASE@{TEST\_CASE}!testa\_monitora\_logs.cpp@{testa\_monitora\_logs.cpp}}
+\doxysubsubsection{\texorpdfstring{TEST\_CASE()}{TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [10/16]}}
+{\footnotesize\ttfamily TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{"{}Logs com mesmo basename agregam em um total\+\_\+"{}}]{,  }\item[{"{}"{}}]{\mbox{[}monitora\+\_\+logs\mbox{]} }\end{DoxyParamCaption})}
+
+\Hypertarget{testa__monitora__logs_8cpp_abdc76e7c6e990c0d985ae8dca9bbf634}\label{testa__monitora__logs_8cpp_abdc76e7c6e990c0d985ae8dca9bbf634} 
+\index{testa\_monitora\_logs.cpp@{testa\_monitora\_logs.cpp}!TEST\_CASE@{TEST\_CASE}}
+\index{TEST\_CASE@{TEST\_CASE}!testa\_monitora\_logs.cpp@{testa\_monitora\_logs.cpp}}
+\doxysubsubsection{\texorpdfstring{TEST\_CASE()}{TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [11/16]}}
+{\footnotesize\ttfamily TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{"{}Merge ordenado com empate preserva total primeiro"{}}]{,  }\item[{"{}"{}}]{\mbox{[}monitora\+\_\+logs\mbox{]} }\end{DoxyParamCaption})}
+
+\Hypertarget{testa__monitora__logs_8cpp_a24669c1ed6ac94128990ffbbcc6f695a}\label{testa__monitora__logs_8cpp_a24669c1ed6ac94128990ffbbcc6f695a} 
+\index{testa\_monitora\_logs.cpp@{testa\_monitora\_logs.cpp}!TEST\_CASE@{TEST\_CASE}}
+\index{TEST\_CASE@{TEST\_CASE}!testa\_monitora\_logs.cpp@{testa\_monitora\_logs.cpp}}
+\doxysubsubsection{\texorpdfstring{TEST\_CASE()}{TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [12/16]}}
+{\footnotesize\ttfamily TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{"{}Merge ordenado onde log vence"{}}]{,  }\item[{"{}"{}}]{\mbox{[}monitora\+\_\+logs\mbox{]} }\end{DoxyParamCaption})}
+
+\Hypertarget{testa__monitora__logs_8cpp_a1e4ed5a33f2dcc43e8b7a8c5029309aa}\label{testa__monitora__logs_8cpp_a1e4ed5a33f2dcc43e8b7a8c5029309aa} 
+\index{testa\_monitora\_logs.cpp@{testa\_monitora\_logs.cpp}!TEST\_CASE@{TEST\_CASE}}
+\index{TEST\_CASE@{TEST\_CASE}!testa\_monitora\_logs.cpp@{testa\_monitora\_logs.cpp}}
+\doxysubsubsection{\texorpdfstring{TEST\_CASE()}{TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [13/16]}}
+{\footnotesize\ttfamily TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{"{}Merge ordenado onde total vence"{}}]{,  }\item[{"{}"{}}]{\mbox{[}monitora\+\_\+logs\mbox{]} }\end{DoxyParamCaption})}
+
+\Hypertarget{testa__monitora__logs_8cpp_a0bc68e11eb7fa6cb98a6a72dc0d402c1}\label{testa__monitora__logs_8cpp_a0bc68e11eb7fa6cb98a6a72dc0d402c1} 
+\index{testa\_monitora\_logs.cpp@{testa\_monitora\_logs.cpp}!TEST\_CASE@{TEST\_CASE}}
+\index{TEST\_CASE@{TEST\_CASE}!testa\_monitora\_logs.cpp@{testa\_monitora\_logs.cpp}}
+\doxysubsubsection{\texorpdfstring{TEST\_CASE()}{TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [14/16]}}
+{\footnotesize\ttfamily TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{"{}Regex parse falha gera total\+\_\+ vazio"{}}]{,  }\item[{"{}"{}}]{\mbox{[}monitora\+\_\+logs\mbox{]} }\end{DoxyParamCaption})}
+
+\Hypertarget{testa__monitora__logs_8cpp_ab308086373ac265261a449329d3a8f35}\label{testa__monitora__logs_8cpp_ab308086373ac265261a449329d3a8f35} 
+\index{testa\_monitora\_logs.cpp@{testa\_monitora\_logs.cpp}!TEST\_CASE@{TEST\_CASE}}
+\index{TEST\_CASE@{TEST\_CASE}!testa\_monitora\_logs.cpp@{testa\_monitora\_logs.cpp}}
+\doxysubsubsection{\texorpdfstring{TEST\_CASE()}{TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [15/16]}}
+{\footnotesize\ttfamily TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{"{}Regex parse sucesso cria total\+\_\+"{}}]{,  }\item[{"{}"{}}]{\mbox{[}monitora\+\_\+logs\mbox{]} }\end{DoxyParamCaption})}
+
+\Hypertarget{testa__monitora__logs_8cpp_a93941e048280bd870ca2ce0b0bc362c4}\label{testa__monitora__logs_8cpp_a93941e048280bd870ca2ce0b0bc362c4} 
+\index{testa\_monitora\_logs.cpp@{testa\_monitora\_logs.cpp}!TEST\_CASE@{TEST\_CASE}}
+\index{TEST\_CASE@{TEST\_CASE}!testa\_monitora\_logs.cpp@{testa\_monitora\_logs.cpp}}
+\doxysubsubsection{\texorpdfstring{TEST\_CASE()}{TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [16/16]}}
+{\footnotesize\ttfamily TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{"{}Total vazio com log existente copia log"{}}]{,  }\item[{"{}"{}}]{\mbox{[}monitora\+\_\+logs\mbox{]} }\end{DoxyParamCaption})}
+

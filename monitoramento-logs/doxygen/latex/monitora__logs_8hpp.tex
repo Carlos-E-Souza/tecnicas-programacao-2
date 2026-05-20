@@ -1,0 +1,39 @@
+\doxysection{monitora\+\_\+logs.\+hpp File Reference}
+\hypertarget{monitora__logs_8hpp}{}\label{monitora__logs_8hpp}\index{monitora\_logs.hpp@{monitora\_logs.hpp}}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=342pt]{monitora__logs_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{monitora__logs_8hpp_a4ae1ac5d10b3a9de51b985ff83f1231c}{processa\+\_\+lista\+\_\+logs}} (char const \texorpdfstring{$\ast$}{*}caminho\+\_\+lista)
+\begin{DoxyCompactList}\small\item\em Processa a lista de arquivos de log e atualiza os arquivos total\+\_\+\texorpdfstring{$\ast$}{*}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{monitora__logs_8hpp_a4ae1ac5d10b3a9de51b985ff83f1231c}\label{monitora__logs_8hpp_a4ae1ac5d10b3a9de51b985ff83f1231c} 
+\index{monitora\_logs.hpp@{monitora\_logs.hpp}!processa\_lista\_logs@{processa\_lista\_logs}}
+\index{processa\_lista\_logs@{processa\_lista\_logs}!monitora\_logs.hpp@{monitora\_logs.hpp}}
+\doxysubsubsection{\texorpdfstring{processa\_lista\_logs()}{processa\_lista\_logs()}}
+{\footnotesize\ttfamily bool processa\+\_\+lista\+\_\+logs (\begin{DoxyParamCaption}\item[{char const \texorpdfstring{$\ast$}{*}}]{caminho\+\_\+lista }\end{DoxyParamCaption})}
+
+
+
+Processa a lista de arquivos de log e atualiza os arquivos total\+\_\+\texorpdfstring{$\ast$}{*}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em caminho\+\_\+lista} & Caminho do arquivo com a lista de logs. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true se o processamento ocorreu sem erros fatais; false caso a lista nao possa ser aberta. 
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+caminho\+\_\+lista != nullptr 
+\end{DoxyPrecond}
