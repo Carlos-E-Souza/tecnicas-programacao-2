@@ -21,6 +21,16 @@ struct LogEntry {
   std::string linha;
 };
 
+std::string normaliza_caminho(std::string const& caminho) {
+  std::string saida = caminho;
+  for (std::size_t i = 0; i < saida.size(); i++) {
+    if (saida[i] == '\\') {
+      saida[i] = '/';
+    }
+  }
+  return saida;
+}
+
 std::string monta_caminho_total(std::string const& caminho_log) {
   std::string::size_type pos = caminho_log.find_last_of("/\\");
   if (pos == std::string::npos) {
@@ -119,12 +129,13 @@ bool processa_lista_logs(char const * caminho_lista) {
     if (caminho_log.empty()) {
       continue;
     }
-    std::ifstream log(caminho_log.c_str());
+    std::string caminho_normalizado = normaliza_caminho(caminho_log);
+    std::ifstream log(caminho_normalizado.c_str());
     if (!log.is_open()) {
       continue;
     }
 
-    std::string caminho_total = monta_caminho_total(caminho_log);
+    std::string caminho_total = monta_caminho_total(caminho_normalizado);
     std::ifstream total_leitura(caminho_total.c_str());
     if (!total_leitura.is_open()) {
       std::vector<LogEntry> entradas_log = carrega_entradas(&log);

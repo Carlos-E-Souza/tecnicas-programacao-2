@@ -220,3 +220,16 @@ TEST_CASE("Lista com multiplos arquivos processa em ordem", "[monitora_logs]") {
   REQUIRE(std::getline(total_b, linha));
   REQUIRE(linha == "11/1/2026 11:00:00 Log B");
 }
+
+TEST_CASE("Caminho com barras invertidas e normalizado", "[monitora_logs]") {
+  std::remove("./total_log_backslash.txt");
+
+  REQUIRE(processa_lista_logs("./fixtures/lista_backslash.txt"));
+
+  std::ifstream total("./total_log_backslash.txt");
+  REQUIRE(total.is_open());
+
+  std::string linha;
+  REQUIRE(std::getline(total, linha));
+  REQUIRE(linha == "12/1/2026 12:12:12 Log com barra invertida");
+}
