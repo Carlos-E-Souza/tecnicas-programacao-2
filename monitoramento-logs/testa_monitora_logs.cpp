@@ -202,3 +202,21 @@ TEST_CASE("Logs com mesmo basename agregam em um total_", "[monitora_logs]") {
   REQUIRE(std::getline(total, linha));
   REQUIRE(linha == "18/1/2026 11:34:21 Log dir B");
 }
+
+TEST_CASE("Lista com multiplos arquivos processa em ordem", "[monitora_logs]") {
+  std::remove("./total_log_a.txt");
+  std::remove("./total_log_b.txt");
+
+  REQUIRE(processa_lista_logs("./fixtures/lista_duas_entradas.txt"));
+
+  std::ifstream total_a("./total_log_a.txt");
+  REQUIRE(total_a.is_open());
+  std::string linha;
+  REQUIRE(std::getline(total_a, linha));
+  REQUIRE(linha == "10/1/2026 10:00:00 Log A");
+
+  std::ifstream total_b("./total_log_b.txt");
+  REQUIRE(total_b.is_open());
+  REQUIRE(std::getline(total_b, linha));
+  REQUIRE(linha == "11/1/2026 11:00:00 Log B");
+}
