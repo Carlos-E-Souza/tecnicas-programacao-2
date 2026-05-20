@@ -3,11 +3,14 @@
 
 #include <algorithm>
 #include <cassert>
+#include <cerrno>
 #include <cstdio>
 #include <fstream>
 #include <sstream>
 #include <string>
 #include <vector>
+#include <sys/stat.h>
+#include <sys/types.h>
 
 namespace {
 
@@ -20,6 +23,17 @@ struct LogEntry {
   int segundo;
   std::string linha;
 };
+
+/**
+ * @brief Garante a existencia do diretorio de saida.
+ * @return true se o diretorio existe ou foi criado.
+ */
+bool garante_diretorio_output() {
+  if (mkdir("output", 0755) == 0) {
+    return true;
+  }
+  return errno == EEXIST;
+}
 
 /**
  * @brief Normaliza separadores de diretorio para '/'.
@@ -48,10 +62,10 @@ std::string monta_caminho_total(std::string const& caminho_log) {
   assert(!caminho_log.empty());
   std::string::size_type pos = caminho_log.find_last_of("/\\");
   if (pos == std::string::npos) {
-    return "total_" + caminho_log;
+    return "output/total_" + caminho_log;
   }
   std::string base = caminho_log.substr(pos + 1);
-  return "total_" + base;
+  return "output/total_" + base;
 }
 
 /**
@@ -117,30 +131,6 @@ bool vem_antes(LogEntry const& esquerda, LogEntry const& direita) {
   if (esquerda.hora != direita.hora) return esquerda.hora < direita.hora;
   if (esquerda.minuto != direita.minuto) return esquerda.minuto < direita.minuto;
   return esquerda.segundo < direita.segundo;
-}
-
-/**
- * @brief Copia linhas de origem para destino.
- * @param origem Stream de origem.
- * @param destino Stream de destino.
- * @return true se pelo menos uma linha foi copiada.
- * @pre origem != nullptr
- * @pre destino != nullptr
- */
-bool copia_arquivo(std::ifstream* origem, std::ofstream* destino) {
-  assert(origem != nullptr);
-  assert(destino != nullptr);
-
-  std::string linha;
-  bool escreveu = false;
-  while (std::getline(*origem, linha)) {
-    *destino << linha;
-    if (!origem->eof()) {
-      *destino << "\n";
-    }
-    escreveu = true;
-  }
-  return escreveu;
 }
 
 /**
@@ -242,6 +232,9 @@ bool processa_lista_logs(char const * caminho_lista) {
 
   std::ifstream lista(caminho_lista);
   if (!lista.is_open()) {
+    return false;
+  }
+  if (!garante_diretorio_output()) {
     return false;
   }
 

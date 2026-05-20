@@ -1,0 +1,2 @@
+14/1/2026 10:00:00 Linha do log
+15/1/2026 12:00:00 Linha do total

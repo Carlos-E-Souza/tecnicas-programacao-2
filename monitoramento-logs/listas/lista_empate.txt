@@ -1,1 +1,1 @@
-../logs/log_empate.txt
+./logs/log_empate.txt

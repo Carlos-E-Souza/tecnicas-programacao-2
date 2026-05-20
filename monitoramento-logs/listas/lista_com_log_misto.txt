@@ -1,1 +1,1 @@
-../logs/log_misto.txt
+./logs/log_misto.txt

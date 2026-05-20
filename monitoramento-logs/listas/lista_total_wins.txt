@@ -1,1 +1,1 @@
-../logs/log_total_wins.txt
+./logs/log_total_wins.txt

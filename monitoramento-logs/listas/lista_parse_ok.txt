@@ -1,1 +1,1 @@
-../logs/log_parse_ok.txt
+./logs/log_parse_ok.txt

@@ -1,1 +1,1 @@
-../logs/log_que_nao_existe.txt
+./logs/log_que_nao_existe.txt

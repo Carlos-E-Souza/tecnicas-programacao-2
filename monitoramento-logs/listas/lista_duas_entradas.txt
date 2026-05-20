@@ -1,2 +1,2 @@
-../logs/log_a.txt
-../logs/log_b.txt
+./logs/log_a.txt
+./logs/log_b.txt

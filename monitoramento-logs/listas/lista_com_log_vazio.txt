@@ -1,1 +1,1 @@
-../logs/log_vazio.txt
+./logs/log_vazio.txt

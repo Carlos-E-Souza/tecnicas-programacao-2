@@ -1,1 +1,1 @@
-..\\logs\\log_backslash.txt
+.\\logs\\log_backslash.txt
