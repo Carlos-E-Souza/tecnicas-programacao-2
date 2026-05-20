@@ -128,6 +128,17 @@ bool processa_lista_logs(char const * caminho_lista) {
       continue;
     }
 
+    if (entradas_total.empty()) {
+      std::ofstream total_escrita(caminho_total.c_str());
+      for (std::size_t k = 0; k < entradas_log.size(); k++) {
+        total_escrita << entradas_log[k].linha;
+        if (k + 1 < entradas_log.size()) {
+          total_escrita << "\n";
+        }
+      }
+      continue;
+    }
+
     std::vector<LogEntry> mesclado;
     mesclado.reserve(entradas_total.size() + entradas_log.size());
 
