@@ -1,0 +1,42 @@
+﻿TDD-Romanos
+Repositorio para a materia de tecnicas de programação 2 do CIC-UNB
+
+========================================
+Pré-requisitos
+========================================
+
+Para garantir que seja possível compilar o projeto e rodar todas as análises de qualidade de código (linter, check, vazamento de memória e cobertura), instale os pacotes e dependências abaixo (exemplo para o ambiente Linux/Ubuntu/Debian):
+
+Atualizar listas de dependências do SO:
+sudo apt update
+
+Instalar o compilador C++ (g++), a automação Make e o Debugger (gdb):
+sudo apt install build-essential gdb
+
+Instalar o CppCheck para checagens de análise estática:
+sudo apt install cppcheck
+
+Instalar o Valgrind para checagens dinâmicas e de vazamento de memória:
+sudo apt install valgrind
+
+Instalar o CppLint (Verificador de padronização de código do Google) dependente de Python:
+sudo apt install python3-pip pipx
+pipx install cpplint
+
+========================================
+Explorando o projeto (Comandos Makefile)
+========================================
+
+O projeto possui dezenas de automações via Makefile. Para rodá-las, basta executar "make <comando>" neste diretório:
+
+- make ou make all: Compila todo o código-fonte gerando os binários básicos e já executa a bateria de testes (./testa_romanos).
+- make compile: Realiza apenas a compilação do romanos.o e do testa_romanos sem executá-lo no final.
+- make test: Uma regra de atalho que unicamente invoca o executável de testes.
+- make cpplint: Invoca o linter cpplint para analisar se estão sendo cumpridas as diretrizes do "Google C++ Style Guide".
+- make gcov: Compila com flags ativas de instrumentação de cobertura, roda os testes e gera um relatório (.gcov) com a porcentagem de Test Coverage.
+- make debug: Constrói o sistema utilizando sinais de debug (-g) e roda a verificação paralela dentro do GNU Debugger (gdb).
+- make cppcheck: Roda uma análise estática restrita em nosso código local (romanos.cpp e testa_romanos.cpp), procurando problemas com variáveis e alocações.
+- make valgrind: Executa nossos testes dentro da barreira dinâmica do "Valgrind", procurando vazamentos de memória (Memory leaks).
+- make clean: Regra essencial de limpeza de cache, excluindo os arquivos objeto (*.o), lixos de cobertura (*.gcda, *.gcno) e executáveis residuais.
+
+OBS: utilize o make clean antes do make, make all ou make compile. 
