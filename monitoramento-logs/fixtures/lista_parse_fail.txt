@@ -1,0 +1,1 @@
+./fixtures/log_parse_fail.txt

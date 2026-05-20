@@ -120,3 +120,13 @@ TEST_CASE("Regex parse sucesso cria total_", "[monitora_logs]") {
   REQUIRE(std::getline(total, linha));
   REQUIRE(linha == "1/2/2026 03:04:05 Log parse ok");
 }
+
+TEST_CASE("Regex parse falha gera total_ vazio", "[monitora_logs]") {
+  std::remove("./fixtures/total_log_parse_fail.txt");
+
+  REQUIRE(processa_lista_logs("./fixtures/lista_parse_fail.txt"));
+
+  std::ifstream total("./fixtures/total_log_parse_fail.txt");
+  REQUIRE(total.is_open());
+  REQUIRE(total.peek() == std::ifstream::traits_type::eof());
+}
