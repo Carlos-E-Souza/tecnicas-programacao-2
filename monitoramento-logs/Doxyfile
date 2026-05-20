@@ -1,0 +1,8 @@
+# Doxygen configuration for Monitoramento de Logs
+PROJECT_NAME = "Monitoramento de Logs"
+OUTPUT_DIRECTORY = doxygen
+INPUT = .
+FILE_PATTERNS = *.hpp *.cpp
+RECURSIVE = YES
+EXTRACT_ALL = YES
+EXCLUDE = catch.hpp

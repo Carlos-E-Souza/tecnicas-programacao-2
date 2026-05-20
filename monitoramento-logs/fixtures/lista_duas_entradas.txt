@@ -1,2 +1,0 @@
-./fixtures/log_a.txt
-./fixtures/log_b.txt

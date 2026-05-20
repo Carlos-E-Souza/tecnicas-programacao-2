@@ -17,7 +17,7 @@ TEST_CASE("Lista inexistente retorna falso", "[monitora_logs]") {
 TEST_CASE("Lista existe e log ausente retorna verdadeiro", "[monitora_logs]") {
   // D3 / R3: L -> !V -> !F -> A3 -> continua
   // Linha da lista aponta para log ausente; deve ignorar e retornar true.
-  REQUIRE(processa_lista_logs("./fixtures/lista_com_log_ausente.txt"));
+  REQUIRE(processa_lista_logs("./listas/lista_com_log_ausente.txt"));
 }
 
 TEST_CASE("Lista existe e total ausente cria total_", "[monitora_logs]") {
@@ -25,7 +25,7 @@ TEST_CASE("Lista existe e total ausente cria total_", "[monitora_logs]") {
   // Log existe e total_ nao; cria total_ com conteudo do log.
   std::remove("./total_log_existe.txt");
 
-  REQUIRE(processa_lista_logs("./fixtures/lista_com_log_existe.txt"));
+  REQUIRE(processa_lista_logs("./listas/lista_com_log_existe.txt"));
 
   std::ifstream total("./total_log_existe.txt");
   REQUIRE(total.is_open());
@@ -47,7 +47,7 @@ TEST_CASE("Lista existe e total existe faz merge ordenado", "[monitora_logs]") {
   total_base << "21/1/2026 18:55:38 Outro total";
   total_base.close();
 
-  REQUIRE(processa_lista_logs("./fixtures/lista_com_log_existe.txt"));
+  REQUIRE(processa_lista_logs("./listas/lista_com_log_existe.txt"));
 
   std::ifstream total("./total_log_existe.txt");
   REQUIRE(total.is_open());
@@ -73,7 +73,7 @@ TEST_CASE("Log vazio com total existente mantem total_", "[monitora_logs]") {
   total_base << "21/1/2026 18:55:38 Outro total";
   total_base.close();
 
-  REQUIRE(processa_lista_logs("./fixtures/lista_com_log_vazio.txt"));
+  REQUIRE(processa_lista_logs("./listas/lista_com_log_vazio.txt"));
 
   std::ifstream total("./total_log_vazio.txt");
   REQUIRE(total.is_open());
@@ -93,7 +93,7 @@ TEST_CASE("Total vazio com log existente copia log", "[monitora_logs]") {
   REQUIRE(total_base.is_open());
   total_base.close();
 
-  REQUIRE(processa_lista_logs("./fixtures/lista_com_log_existe.txt"));
+  REQUIRE(processa_lista_logs("./listas/lista_com_log_existe.txt"));
 
   std::ifstream total("./total_log_existe.txt");
   REQUIRE(total.is_open());
@@ -110,7 +110,7 @@ TEST_CASE("Linhas invalidas sao ignoradas e validas processadas", "[monitora_log
   // Linhas invalidas sao descartadas; validas entram no total_.
   std::remove("./total_log_misto.txt");
 
-  REQUIRE(processa_lista_logs("./fixtures/lista_com_log_misto.txt"));
+  REQUIRE(processa_lista_logs("./listas/lista_com_log_misto.txt"));
 
   std::ifstream total("./total_log_misto.txt");
   REQUIRE(total.is_open());
@@ -127,7 +127,7 @@ TEST_CASE("Regex parse sucesso cria total_", "[monitora_logs]") {
   // Linha valida unica; total_ criado com a linha parseada.
   std::remove("./total_log_parse_ok.txt");
 
-  REQUIRE(processa_lista_logs("./fixtures/lista_parse_ok.txt"));
+  REQUIRE(processa_lista_logs("./listas/lista_parse_ok.txt"));
 
   std::ifstream total("./total_log_parse_ok.txt");
   REQUIRE(total.is_open());
@@ -142,7 +142,7 @@ TEST_CASE("Regex parse falha gera total_ vazio", "[monitora_logs]") {
   // Linha invalida unica; total_ criado sem conteudo.
   std::remove("./total_log_parse_fail.txt");
 
-  REQUIRE(processa_lista_logs("./fixtures/lista_parse_fail.txt"));
+  REQUIRE(processa_lista_logs("./listas/lista_parse_fail.txt"));
 
   std::ifstream total("./total_log_parse_fail.txt");
   REQUIRE(total.is_open());
@@ -158,7 +158,7 @@ TEST_CASE("Merge ordenado onde total vence", "[monitora_logs]") {
   total_base << "15/1/2026 12:00:00 Linha do total";
   total_base.close();
 
-  REQUIRE(processa_lista_logs("./fixtures/lista_total_wins.txt"));
+  REQUIRE(processa_lista_logs("./listas/lista_total_wins.txt"));
 
   std::ifstream total("./total_log_total_wins.txt");
   REQUIRE(total.is_open());
@@ -179,7 +179,7 @@ TEST_CASE("Merge ordenado onde log vence", "[monitora_logs]") {
   total_base << "15/1/2026 12:00:00 Linha do total";
   total_base.close();
 
-  REQUIRE(processa_lista_logs("./fixtures/lista_log_wins.txt"));
+  REQUIRE(processa_lista_logs("./listas/lista_log_wins.txt"));
 
   std::ifstream total("./total_log_log_wins.txt");
   REQUIRE(total.is_open());
@@ -200,7 +200,7 @@ TEST_CASE("Merge ordenado com empate preserva total primeiro", "[monitora_logs]"
   total_base << "15/1/2026 12:00:00 Linha do total";
   total_base.close();
 
-  REQUIRE(processa_lista_logs("./fixtures/lista_empate.txt"));
+  REQUIRE(processa_lista_logs("./listas/lista_empate.txt"));
 
   std::ifstream total("./total_log_empate.txt");
   REQUIRE(total.is_open());
@@ -217,7 +217,7 @@ TEST_CASE("Logs com mesmo basename agregam em um total_", "[monitora_logs]") {
   // Dois logs com mesmo basename; agregam em um unico total_.
   std::remove("./total_log1.txt");
 
-  REQUIRE(processa_lista_logs("./fixtures/lista_multidir.txt"));
+  REQUIRE(processa_lista_logs("./listas/lista_multidir.txt"));
 
   std::ifstream total("./total_log1.txt");
   REQUIRE(total.is_open());
@@ -235,7 +235,7 @@ TEST_CASE("Lista com multiplos arquivos processa em ordem", "[monitora_logs]") {
   std::remove("./total_log_a.txt");
   std::remove("./total_log_b.txt");
 
-  REQUIRE(processa_lista_logs("./fixtures/lista_duas_entradas.txt"));
+  REQUIRE(processa_lista_logs("./listas/lista_duas_entradas.txt"));
 
   std::ifstream total_a("./total_log_a.txt");
   REQUIRE(total_a.is_open());
@@ -254,7 +254,7 @@ TEST_CASE("Caminho com barras invertidas e normalizado", "[monitora_logs]") {
   // Caminho com barra invertida e normalizado antes de abrir.
   std::remove("./total_log_backslash.txt");
 
-  REQUIRE(processa_lista_logs("./fixtures/lista_backslash.txt"));
+  REQUIRE(processa_lista_logs("./listas/lista_backslash.txt"));
 
   std::ifstream total("./total_log_backslash.txt");
   REQUIRE(total.is_open());
@@ -270,7 +270,7 @@ TEST_CASE("Fim a fim com multiplos logs ordenados", "[monitora_logs]") {
   std::remove("./total_log_e2e_a.txt");
   std::remove("./total_log_e2e_b.txt");
 
-  REQUIRE(processa_lista_logs("./fixtures/lista_e2e.txt"));
+  REQUIRE(processa_lista_logs("./listas/lista_e2e.txt"));
 
   std::ifstream total_a("./total_log_e2e_a.txt");
   REQUIRE(total_a.is_open());

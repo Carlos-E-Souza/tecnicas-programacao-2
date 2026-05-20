@@ -1,1 +1,0 @@
-./fixtures/log_empate.txt

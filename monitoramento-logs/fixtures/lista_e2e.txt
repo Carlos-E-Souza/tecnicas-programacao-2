@@ -1,2 +1,0 @@
-.\\fixtures\\log_e2e_a.txt
-./fixtures/log_e2e_b.txt
