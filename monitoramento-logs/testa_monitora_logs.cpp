@@ -9,14 +9,17 @@
 #include <string>
 
 TEST_CASE("Lista inexistente retorna falso", "[monitora_logs]") {
+  // D1 / R1
   REQUIRE_FALSE(processa_lista_logs("./nao_existe.txt"));
 }
 
 TEST_CASE("Lista existe e log ausente retorna verdadeiro", "[monitora_logs]") {
+  // D3 / R3
   REQUIRE(processa_lista_logs("./fixtures/lista_com_log_ausente.txt"));
 }
 
 TEST_CASE("Lista existe e total ausente cria total_", "[monitora_logs]") {
+  // D4 / R4
   std::remove("./total_log_existe.txt");
 
   REQUIRE(processa_lista_logs("./fixtures/lista_com_log_existe.txt"));
@@ -32,6 +35,7 @@ TEST_CASE("Lista existe e total ausente cria total_", "[monitora_logs]") {
 }
 
 TEST_CASE("Lista existe e total existe faz merge ordenado", "[monitora_logs]") {
+  // D5 / R5
   std::remove("./total_log_existe.txt");
   std::ofstream total_base("./total_log_existe.txt");
   REQUIRE(total_base.is_open());
@@ -56,6 +60,7 @@ TEST_CASE("Lista existe e total existe faz merge ordenado", "[monitora_logs]") {
 }
 
 TEST_CASE("Log vazio com total existente mantem total_", "[monitora_logs]") {
+  // D6 / R6
   std::remove("./total_log_vazio.txt");
   std::ofstream total_base("./total_log_vazio.txt");
   REQUIRE(total_base.is_open());
@@ -76,6 +81,7 @@ TEST_CASE("Log vazio com total existente mantem total_", "[monitora_logs]") {
 }
 
 TEST_CASE("Total vazio com log existente copia log", "[monitora_logs]") {
+  // D7 / R7
   std::remove("./total_log_existe.txt");
   std::ofstream total_base("./total_log_existe.txt");
   REQUIRE(total_base.is_open());
@@ -94,6 +100,7 @@ TEST_CASE("Total vazio com log existente copia log", "[monitora_logs]") {
 }
 
 TEST_CASE("Linhas invalidas sao ignoradas e validas processadas", "[monitora_logs]") {
+  // D8 / R8
   std::remove("./total_log_misto.txt");
 
   REQUIRE(processa_lista_logs("./fixtures/lista_com_log_misto.txt"));
@@ -109,6 +116,7 @@ TEST_CASE("Linhas invalidas sao ignoradas e validas processadas", "[monitora_log
 }
 
 TEST_CASE("Regex parse sucesso cria total_", "[monitora_logs]") {
+  // R9
   std::remove("./total_log_parse_ok.txt");
 
   REQUIRE(processa_lista_logs("./fixtures/lista_parse_ok.txt"));
@@ -122,6 +130,7 @@ TEST_CASE("Regex parse sucesso cria total_", "[monitora_logs]") {
 }
 
 TEST_CASE("Regex parse falha gera total_ vazio", "[monitora_logs]") {
+  // R10
   std::remove("./total_log_parse_fail.txt");
 
   REQUIRE(processa_lista_logs("./fixtures/lista_parse_fail.txt"));
@@ -132,6 +141,7 @@ TEST_CASE("Regex parse falha gera total_ vazio", "[monitora_logs]") {
 }
 
 TEST_CASE("Merge ordenado onde total vence", "[monitora_logs]") {
+  // R11
   std::remove("./total_log_total_wins.txt");
   std::ofstream total_base("./total_log_total_wins.txt");
   REQUIRE(total_base.is_open());
@@ -151,6 +161,7 @@ TEST_CASE("Merge ordenado onde total vence", "[monitora_logs]") {
 }
 
 TEST_CASE("Merge ordenado onde log vence", "[monitora_logs]") {
+  // R12
   std::remove("./total_log_log_wins.txt");
   std::ofstream total_base("./total_log_log_wins.txt");
   REQUIRE(total_base.is_open());
@@ -170,6 +181,7 @@ TEST_CASE("Merge ordenado onde log vence", "[monitora_logs]") {
 }
 
 TEST_CASE("Merge ordenado com empate preserva total primeiro", "[monitora_logs]") {
+  // R13
   std::remove("./total_log_empate.txt");
   std::ofstream total_base("./total_log_empate.txt");
   REQUIRE(total_base.is_open());
@@ -189,6 +201,7 @@ TEST_CASE("Merge ordenado com empate preserva total primeiro", "[monitora_logs]"
 }
 
 TEST_CASE("Logs com mesmo basename agregam em um total_", "[monitora_logs]") {
+  // R14
   std::remove("./total_log1.txt");
 
   REQUIRE(processa_lista_logs("./fixtures/lista_multidir.txt"));
@@ -204,6 +217,7 @@ TEST_CASE("Logs com mesmo basename agregam em um total_", "[monitora_logs]") {
 }
 
 TEST_CASE("Lista com multiplos arquivos processa em ordem", "[monitora_logs]") {
+  // R15
   std::remove("./total_log_a.txt");
   std::remove("./total_log_b.txt");
 
@@ -222,6 +236,7 @@ TEST_CASE("Lista com multiplos arquivos processa em ordem", "[monitora_logs]") {
 }
 
 TEST_CASE("Caminho com barras invertidas e normalizado", "[monitora_logs]") {
+  // R16
   std::remove("./total_log_backslash.txt");
 
   REQUIRE(processa_lista_logs("./fixtures/lista_backslash.txt"));
@@ -235,6 +250,7 @@ TEST_CASE("Caminho com barras invertidas e normalizado", "[monitora_logs]") {
 }
 
 TEST_CASE("Fim a fim com multiplos logs ordenados", "[monitora_logs]") {
+  // R17
   std::remove("./total_log_e2e_a.txt");
   std::remove("./total_log_e2e_b.txt");
 

@@ -96,3 +96,30 @@ R7: L -> !V -> F -> T -> !ZL -> ZT -> A4
 
 R8: L -> !V -> F -> (OK* + BAD+) -> A7 + A5
 - Teste: linhas invalidas sao ignoradas, validas entram no merge (D8).
+
+R9: L -> !V -> F -> !T -> OK -> A4
+- Teste: regex parse sucesso cria total_.
+
+R10: L -> !V -> F -> !T -> BAD+ -> A4
+- Teste: regex parse falha gera total_ vazio.
+
+R11: L -> !V -> F -> T -> !ZL -> !ZT -> total antes do log
+- Teste: merge ordenado onde total vence.
+
+R12: L -> !V -> F -> T -> !ZL -> !ZT -> log antes do total
+- Teste: merge ordenado onde log vence.
+
+R13: L -> !V -> F -> T -> !ZL -> !ZT -> empate (total primeiro)
+- Teste: merge ordenado com empate preserva total primeiro.
+
+R14: L -> !V -> F(dir_a) -> total_basename -> F(dir_b) -> mesmo total_
+- Teste: logs com mesmo basename agregam em um total_.
+
+R15: L -> !V -> F(log_a) -> A4 -> F(log_b) -> A4
+- Teste: lista com multiplos arquivos processa em ordem.
+
+R16: L -> !V -> caminho com '\\' -> normaliza -> F -> A4
+- Teste: caminho com barras invertidas e normalizado.
+
+R17: L -> !V -> F(log_e2e_a) + F(log_e2e_b) -> A4
+- Teste: fim a fim com multiplos logs ordenados.
