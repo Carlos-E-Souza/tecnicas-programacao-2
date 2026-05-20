@@ -1,0 +1,1 @@
+./fixtures/log_vazio.txt

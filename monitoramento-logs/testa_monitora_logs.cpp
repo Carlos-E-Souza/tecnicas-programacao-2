@@ -54,3 +54,23 @@ TEST_CASE("Lista existe e total existe faz merge ordenado", "[monitora_logs]") {
   REQUIRE(std::getline(total, linha));
   REQUIRE(linha == "21/1/2026 18:55:38 Outro total");
 }
+
+TEST_CASE("Log vazio com total existente mantem total_", "[monitora_logs]") {
+  std::remove("./fixtures/total_log_vazio.txt");
+  std::ofstream total_base("./fixtures/total_log_vazio.txt");
+  REQUIRE(total_base.is_open());
+  total_base << "17/1/2026 14:17:46 Log do total" << "\n";
+  total_base << "21/1/2026 18:55:38 Outro total";
+  total_base.close();
+
+  REQUIRE(processa_lista_logs("./fixtures/lista_com_log_vazio.txt"));
+
+  std::ifstream total("./fixtures/total_log_vazio.txt");
+  REQUIRE(total.is_open());
+
+  std::string linha;
+  REQUIRE(std::getline(total, linha));
+  REQUIRE(linha == "17/1/2026 14:17:46 Log do total");
+  REQUIRE(std::getline(total, linha));
+  REQUIRE(linha == "21/1/2026 18:55:38 Outro total");
+}
