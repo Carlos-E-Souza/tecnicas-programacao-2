@@ -26,9 +26,8 @@ std::string monta_caminho_total(std::string const& caminho_log) {
   if (pos == std::string::npos) {
     return "total_" + caminho_log;
   }
-  std::string dir = caminho_log.substr(0, pos + 1);
   std::string base = caminho_log.substr(pos + 1);
-  return dir + "total_" + base;
+  return "total_" + base;
 }
 
 bool parse_linha_log(std::string const& linha, LogEntry* saida) {
