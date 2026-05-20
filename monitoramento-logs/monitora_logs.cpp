@@ -124,6 +124,10 @@ bool processa_lista_logs(char const * caminho_lista) {
     std::vector<LogEntry> entradas_total = carrega_entradas(&total_leitura);
     std::vector<LogEntry> entradas_log = carrega_entradas(&log);
 
+    if (entradas_log.empty()) {
+      continue;
+    }
+
     std::vector<LogEntry> mesclado;
     mesclado.reserve(entradas_total.size() + entradas_log.size());
 
