@@ -187,3 +187,18 @@ TEST_CASE("Merge ordenado com empate preserva total primeiro", "[monitora_logs]"
   REQUIRE(std::getline(total, linha));
   REQUIRE(linha == "15/1/2026 12:00:00 Linha do log");
 }
+
+TEST_CASE("Logs com mesmo basename agregam em um total_", "[monitora_logs]") {
+  std::remove("./total_log1.txt");
+
+  REQUIRE(processa_lista_logs("./fixtures/lista_multidir.txt"));
+
+  std::ifstream total("./total_log1.txt");
+  REQUIRE(total.is_open());
+
+  std::string linha;
+  REQUIRE(std::getline(total, linha));
+  REQUIRE(linha == "16/1/2026 13:27:46 Log dir A");
+  REQUIRE(std::getline(total, linha));
+  REQUIRE(linha == "18/1/2026 11:34:21 Log dir B");
+}

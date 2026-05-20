@@ -1,0 +1,2 @@
+./fixtures/dir_a/log1.txt
+./fixtures/dir_b/log1.txt
