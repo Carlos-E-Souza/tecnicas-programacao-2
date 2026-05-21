@@ -45,4 +45,4 @@ OBS: utilize o make clean antes do make, make all ou make compile.
 Documentacao e testes
 ========================================
 
-- Tabela de decisao e expressoes regulares: ver decisao.md
+- Tabela de decisao e expressoes regulares: ver tabela_decisao.md
