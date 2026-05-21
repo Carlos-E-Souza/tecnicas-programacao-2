@@ -68,6 +68,6 @@ vcpkg_installed/
 Testing/
 .cache/
 
-
+*.code-workspace
 plan.md
 desc.md

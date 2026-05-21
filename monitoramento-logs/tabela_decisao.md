@@ -53,6 +53,7 @@ Observacoes
 - D7: Total vazio + log existe copia log para total_.
 - D8: Linhas invalidas sao ignoradas e validas sao processadas.
 
+
 ## Expressoes regulares de cobertura (caixa-aberta)
 
 As expressoes abaixo descrevem caminhos internos do codigo. Cada expressao vira
